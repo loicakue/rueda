@@ -7,16 +7,21 @@ function processTagName(name) {
 
 function processVariations(error, result) {
 	var levels = {};
+	var names = {};
 	var elements = {};
 	result.p_salsa4fun.rueda.map(function (element) {
 		if (!levels[element.level]) {
 			levels[element.level] = {};
 		}
 		levels[element.level][element.id] = element;
+		element.spanishName.split(/[\\()\/,]/).forEach(function (alias) {
+			names[alias.trim()] = [parseInt(element.level), parseInt(element.id)];
+		})
 	});
 	fs.writeFileSync('../www/model/variations.json', JSON.stringify({
-		levels: levels
-	}, null, '\t'));
+		levels: levels,
+		names: names
+	}));
 	console.log('Done');
 }
 
