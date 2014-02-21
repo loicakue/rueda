@@ -1,0 +1,16 @@
+/* Your app's CSS, go crazy, make it your own */
+
+header h1 {
+    direction: rtl;
+}
+
+.hebrew {
+    direction: rtl;
+}
+
+.ionic-logo {
+  display: block;
+  margin: 15px auto;
+  width: 96px;
+  height: 96px;
+}
