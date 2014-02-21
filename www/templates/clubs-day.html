@@ -1,0 +1,18 @@
+<ion-view title="title">
+	<ion-content has-header="true" has-tabs="true" padding="true">
+
+		<div ng-repeat="club in clubs" class="card hebrew">
+			<div class="item item-divider">
+				{{club.title}}
+			</div>
+			<div class="item item-text-wrap">
+				{{club.description}}
+				<hr />
+				<div ng-if="club.contact_phone">
+					<i class="icon ion-ios7-telephone"></i> <span ng-bind-html="club.contact_phone|phoneLinks"></span>
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

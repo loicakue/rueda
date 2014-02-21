@@ -17,4 +17,14 @@ angular.module('RuedaApp.filters', [])
 				}
 			});
 		};
+	})
+	.filter('phoneLinks', function () {
+		function escapeHtml(text) {
+			return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		}
+
+		return function (text) {
+			return escapeHtml(text).replace(/05[\d-]{8,9}/g, '<a href="tel:$&">$&</a>');
+		};
 	});
+;

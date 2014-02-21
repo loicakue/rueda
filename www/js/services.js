@@ -36,9 +36,37 @@ angular.module('RuedaApp.services', [])
 				angular.copy(result.levels[levelId][variationId], variation);
 			});
 			return variation;
-		}
+		};
 
 		this.getNameMapping = function () {
 			return variationNameMapping;
+		};
+	})
+	.service('ClubsService', function ($http) {
+		var clubsJson = $http.get('model/clubsIsrael.json');
+		this.getClubs = function (weekDay) {
+			var clubs = [];
+			clubsJson.success(function (result) {
+				angular.copy(result.filter(function (club) {
+					return club.week_day == weekDay;
+				}), clubs);
+			});
+			return clubs;
+		}
+
+		this.getDays = function () {
+			return ['יום ראשון', 'יום שני', 'יום שלישי', 'יום רביעי', 'יום חמישי', 'יום שישי', 'יום שבת'];
+		};
+
+		this.getClub = function (clubId) {
+			var club = {};
+			clubsJson.success(function (result) {
+				angular.forEach(result, function (candidate) {
+					if (candidate.id == clubId) {
+						angular.copy(candidate, club);
+					}
+				});
+			});
+			return club;
 		}
 	});

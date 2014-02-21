@@ -34,11 +34,21 @@ angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaAp
 					}
 				}
 			})
-			.state('tab.adopt', {
-				url: '/adopt',
+			.state('tab.clubs', {
+				url: '/clubs',
 				views: {
-					'adopt-tab': {
-						templateUrl: 'templates/adopt.html'
+					'clubs-tab': {
+						templateUrl: 'templates/clubs.html',
+						controller: 'ClubsCtrl'
+					}
+				}
+			})
+			.state('tab.clubs-day', {
+				url: '/clubs/:day',
+				views: {
+					'clubs-tab': {
+						templateUrl: 'templates/clubs-day.html',
+						controller: 'ClubsDayCtrl'
 					}
 				}
 			})
