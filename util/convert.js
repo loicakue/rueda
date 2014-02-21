@@ -5,19 +5,29 @@ function processTagName(name) {
 	return (/^Rueda/.test(name)) ? name[5].toLowerCase() + name.substr(6) : name;
 }
 
+function regexpEscape(str) {
+	return str.replace(/[()[{*+.$^\\|?]/g, '\\$&');
+}
+
 function processVariations(error, result) {
 	var levels = {};
 	var names = {};
 	var elements = {};
+	var expression = [];
 	result.p_salsa4fun.rueda.map(function (element) {
 		if (!levels[element.level]) {
 			levels[element.level] = {};
 		}
 		levels[element.level][element.id] = element;
 		element.spanishName.split(/[\\()\/,]/).forEach(function (alias) {
-			names[alias.trim()] = [parseInt(element.level), parseInt(element.id)];
+			var escapedAlias = regexpEscape(alias.trim());
+			expression.push(escapedAlias);
+			names[alias.trim().toLowerCase()] = [parseInt(element.level), parseInt(element.id)];
 		})
 	});
+	expression.sort();
+	expression.reverse();
+	names._expression = expression.join('|');
 	fs.writeFileSync('../www/model/variations.json', JSON.stringify({
 		levels: levels,
 		names: names

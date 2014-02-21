@@ -2,6 +2,7 @@ angular.module('RuedaApp.services', [])
 	.service('RuedaService', function ($http) {
 		var levelsJson = $http.get('model/levels.json');
 		var variationsJson = $http.get('model/variations.json');
+		var variationNameMapping = null;
 
 		this.getLevels = function () {
 			var levels = [];
@@ -22,6 +23,7 @@ angular.module('RuedaApp.services', [])
 				angular.copy(result.levels, levels);
 			});
 			variationsJson.success(function (result) {
+				variationNameMapping = result.names;
 				level.variations = result.levels[id];
 			});
 			return level;
@@ -30,8 +32,13 @@ angular.module('RuedaApp.services', [])
 		this.getVariation = function (levelId, variationId) {
 			var variation = {};
 			variationsJson.success(function (result) {
+				variationNameMapping = result.names;
 				angular.copy(result.levels[levelId][variationId], variation);
 			});
 			return variation;
+		}
+
+		this.getNameMapping = function () {
+			return variationNameMapping;
 		}
 	});

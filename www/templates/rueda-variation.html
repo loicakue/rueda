@@ -1,19 +1,20 @@
 <ion-view title="variation.displayName">
-	<ion-content has-header="true" padding="true" class="hebrew">
+	<ion-content has-header="true" has-tabs="true" padding="true" class="hebrew">
 		<h4>פרטי התרגיל</h4>
 
 		<p>שם: {{variation.spanishName}}</p>
+		<p>שם בעברית: {{variation.hebrewName}}</p>
 		<p ng-if="variation.meaning">פירוש: {{variation.meaning}}</p>
 		<p ng-if="variation.marking">סימון: {{variation.marking}}</p>
 
 		<h4>מהלך התרגיל</h4>
 
-		<p ng-bind-html="variation.description"></p>
+		<p ng-bind-html="variation.description|ruedaHyperlinks"></p>
 
 		<div ng-if="variation.notes">
 			<h4>הערות</h4>
 
-			<p ng-bind-html="variation.notes"></p>
+			<p ng-bind-html="variation.notes|ruedaHyperlinks"></p>
 		</div>
 
 		<div ng-if="variation.videoLink">

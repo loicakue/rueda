@@ -1,4 +1,4 @@
-angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaApp.controllers'])
+angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaApp.controllers', 'RuedaApp.filters'])
 	.config(function ($stateProvider, $urlRouterProvider) {
 
 		$stateProvider
