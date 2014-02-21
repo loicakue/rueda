@@ -9,12 +9,12 @@
 
 		<h4>מהלך התרגיל</h4>
 
-		<p ng-bind-html="variation.description|ruedaHyperlinks"></p>
+		<p ng-bind-html="variation.description|ruedaHyperlinks:variation.id"></p>
 
 		<div ng-if="variation.notes">
 			<h4>הערות</h4>
 
-			<p ng-bind-html="variation.notes|ruedaHyperlinks"></p>
+			<p ng-bind-html="variation.notes|ruedaHyperlinks:variation.id"></p>
 		</div>
 
 		<div ng-if="variation.videoLink">

@@ -25,8 +25,10 @@ function processVariations(error, result) {
 			names[alias.trim().toLowerCase()] = [parseInt(element.level), parseInt(element.id)];
 		})
 	});
-	expression.sort();
-	expression.reverse();
+	// Sort the array by element length (longer names first)
+	expression.sort(function (a, b) {
+		return b.length - a.length;
+	});
 	names._expression = expression.join('|');
 	fs.writeFileSync('../www/model/variations.json', JSON.stringify({
 		levels: levels,
