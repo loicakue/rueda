@@ -1,4 +1,4 @@
-angular.module('RuedaApp.services', [])
+angular.module('RuedaApp.services', ['ngResource'])
 	.service('RuedaService', function ($http) {
 		var levelsJson = $http.get('model/levels.json');
 		var variationsJson = $http.get('model/variations.json');
@@ -69,4 +69,19 @@ angular.module('RuedaApp.services', [])
 			});
 			return club;
 		}
+	})
+	.service('VideosService', function ($resource) {
+		var videos = $resource('model/timingVideos.json').query();
+
+		this.getVideos = function () {
+			return videos;
+		};
+
+		this.getVideo = function(videoId) {
+			var video = {};
+			videos.$promise.then(function() {
+				angular.copy(videos[videoId], video);
+			});
+			return video;
+		};
 	});

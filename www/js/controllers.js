@@ -11,6 +11,7 @@ angular.module('RuedaApp.controllers', [])
 			return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + $scope.variation.videoLink.replace(/^.*\?v=/, ''));
 		}
 	})
+
 	/* Clubs */
 	.controller('ClubsCtrl', function ($scope, ClubsService) {
 		$scope.days = ClubsService.getDays();
@@ -18,6 +19,14 @@ angular.module('RuedaApp.controllers', [])
 	.controller('ClubsDayCtrl', function ($scope, $stateParams, ClubsService) {
 		$scope.title = ClubsService.getDays()[$stateParams.day];
 		$scope.clubs = ClubsService.getClubs(parseInt($stateParams.day, 10) + 1);
+	})
+
+	/* Videos */
+	.controller('VideosCtrl', function($scope, VideosService) {
+		$scope.videos = VideosService.getVideos();
+	})
+	.controller('VideosDetailCtrl', function($scope, $stateParams, VideosService) {
+		$scope.video = VideosService.getVideo($stateParams.videoId);
 	})
 ;
 

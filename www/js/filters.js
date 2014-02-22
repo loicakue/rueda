@@ -26,5 +26,10 @@ angular.module('RuedaApp.filters', [])
 		return function (text) {
 			return escapeHtml(text).replace(/05[\d-]{8,9}/g, '<a href="tel:$&">$&</a>');
 		};
+	})
+	.filter('youtubeEmbedUrl', function($sce) {
+		return function(videoId) {
+			return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + videoId);
+		};
 	});
 ;

@@ -34,6 +34,14 @@ angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaAp
 					}
 				}
 			})
+			.state('tab.about', {
+				url: '/about',
+				views: {
+					'rueda-tab': {
+						templateUrl: 'templates/about.html'
+					}
+				}
+			})
 			.state('tab.clubs', {
 				url: '/clubs',
 				views: {
@@ -52,14 +60,25 @@ angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaAp
 					}
 				}
 			})
-			.state('tab.about', {
-				url: '/about',
+			.state('tab.videos', {
+				url: '/videos',
 				views: {
-					'about-tab': {
-						templateUrl: 'templates/about.html'
+					'videos-tab': {
+						templateUrl: 'templates/videos.html',
+						controller: 'VideosCtrl'
 					}
 				}
-			});
+			})
+			.state('tab.videos-detail', {
+				url: '/videos/:videoId',
+				views: {
+					'videos-tab': {
+						templateUrl: 'templates/videos-detail.html',
+						controller: 'VideosDetailCtrl'
+					}
+				}
+			})
+		;
 
 		$urlRouterProvider.otherwise('/tab/rueda');
 	});
