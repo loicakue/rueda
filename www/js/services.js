@@ -20,7 +20,6 @@ angular.module('RuedaApp.services', ['ngResource'])
 						angular.copy(item, level);
 					}
 				});
-				angular.copy(result.levels, levels);
 			});
 			variationsJson.success(function (result) {
 				variationNameMapping = result.names;
@@ -42,6 +41,7 @@ angular.module('RuedaApp.services', ['ngResource'])
 			return variationNameMapping;
 		};
 	})
+
 	.service('ClubsService', function ($http) {
 		var clubsJson = $http.get('model/clubsIsrael.json');
 		this.getClubs = function (weekDay) {
@@ -70,6 +70,7 @@ angular.module('RuedaApp.services', ['ngResource'])
 			return club;
 		}
 	})
+
 	.service('VideosService', function ($resource) {
 		var videos = $resource('model/timingVideos.json').query();
 
@@ -77,11 +78,29 @@ angular.module('RuedaApp.services', ['ngResource'])
 			return videos;
 		};
 
-		this.getVideo = function(videoId) {
+		this.getVideo = function (videoId) {
 			var video = {};
-			videos.$promise.then(function() {
+			videos.$promise.then(function () {
 				angular.copy(videos[videoId], video);
 			});
 			return video;
+		};
+	})
+
+	.service('Analytics', function ($window, $q) {
+		var initDeferred = $q.defer();
+		var initPromise = initDeferred.promise;
+
+		this.init = function (trackerId) {
+			if ($window.analytics) {
+				$window.analytics.startTrackerWithId(trackerId);
+				initDeferred.resolve(true);
+			}
+		};
+		this.trackView = function (title) {
+			initPromise.then(function () {
+				$window.analytics.trackView(title);
+				alert('tracked ' + title);
+			});
 		};
 	});

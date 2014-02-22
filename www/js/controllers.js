@@ -5,11 +5,17 @@ angular.module('RuedaApp.controllers', [])
 	.controller('RuedaLevelCtrl', function ($scope, $stateParams, RuedaService) {
 		$scope.level = RuedaService.getLevel($stateParams.levelId);
 	})
-	.controller('RuedaVariationCtrl', function ($scope, $sce, $stateParams, RuedaService) {
+	.controller('RuedaVariationCtrl', function ($scope, $sce, $stateParams, RuedaService, Analytics) {
 		$scope.variation = RuedaService.getVariation($stateParams.levelId, $stateParams.variationId);
 		$scope.videoLink = function () {
 			return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + $scope.variation.videoLink.replace(/^.*\?v=/, ''));
 		}
+
+		$scope.$watch('variation.spanishName', function (spanishName) {
+			if (spanishName) {
+				Analytics.trackView('Rueda/' + spanishName);
+			}
+		});
 	})
 
 	/* Clubs */
@@ -22,10 +28,10 @@ angular.module('RuedaApp.controllers', [])
 	})
 
 	/* Videos */
-	.controller('VideosCtrl', function($scope, VideosService) {
+	.controller('VideosCtrl', function ($scope, VideosService) {
 		$scope.videos = VideosService.getVideos();
 	})
-	.controller('VideosDetailCtrl', function($scope, $stateParams, VideosService) {
+	.controller('VideosDetailCtrl', function ($scope, $stateParams, VideosService) {
 		$scope.video = VideosService.getVideo($stateParams.videoId);
 	})
 ;
