@@ -85,6 +85,7 @@ angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaAp
 	.run(function ($ionicPlatform, Analytics) {
 		$ionicPlatform.ready(function() {
 			Analytics.init('UA-1666271-15');
+			Analytics.trackView('Main')
 		});
 	});
 

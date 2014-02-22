@@ -100,7 +100,6 @@ angular.module('RuedaApp.services', ['ngResource'])
 		this.trackView = function (title) {
 			initPromise.then(function () {
 				$window.analytics.trackView(title);
-				alert('tracked ' + title);
 			});
 		};
 	});
