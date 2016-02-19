@@ -1,12 +1,13 @@
-<ion-view title="'מאגר תרגילי הרואדה'">
-	<ion-content has-header="true" has-tabs="true">
+<ion-view title="'head_title' | translate">
+    <ion-content has-header="true" has-tabs="true">
 
 		<ion-list class="hebrew">
 			<ion-item ng-repeat="level in levels" type="item-text-wrap" href="#/tab/rueda/{{level.id}}">
-				<h3>{{level.title}}</h3>
+				<h3>{{ level.title | translate }}</h3>
 			</ion-item>
+
 			<ion-item type="item-text-wrap" href="#/tab/about">
-				<h3>אודות המאגר</h3>
+				<h3>{{"about_message" | translate}}</h3>
 			</ion-item>
 		</ion-list>
 

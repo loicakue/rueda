@@ -1,31 +1,31 @@
 {
 	"levels": [
 		{
-			"title": "רמת בסיס",
+                        "title": "lvl_0",
 			"id": "0"
 		},
 		{
-			"title": "רמה 1",
+			"title": "lvl_1",
 			"id": "1"
 		},
 		{
-			"title": "רמה 2",
+			"title": "lvl_2",
 			"id": "2"
 		},
 		{
-			"title": "רמה 3",
+			"title": "lvl_3",
 			"id": "3"
 		},
 		{
-			"title": "רמה 4",
+			"title": "lvl_4",
 			"id": "4"
 		},
 		{
-			"title": "רמה 5",
+			"title": "lvl_5",
 			"id": "5"
 		},
 		{
-			"title": "רמה 6",
+			"title": "lvl_6",
 			"id": "6"
 		}
 	]

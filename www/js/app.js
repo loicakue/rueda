@@ -1,5 +1,11 @@
-angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaApp.controllers', 'RuedaApp.filters'])
-	.config(function ($stateProvider, $urlRouterProvider) {
+angular.module('RuedaApp', ['ionic', 'ngSanitize', 'pascalprecht.translate', 'RuedaApp.services', 'RuedaApp.controllers', 'RuedaApp.filters'])
+	.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
+
+	    $translateProvider.translations('he', translations_he);
+	    $translateProvider.translations('en', translations_en);
+	    $translateProvider.translations('fr', translations_fr);
+	    $translateProvider.preferredLanguage("he");
+	    $translateProvider.fallbackLanguage("he");
 
 		$stateProvider
 			.state('tab', {
@@ -79,9 +85,9 @@ angular.module('RuedaApp', ['ionic', 'ngSanitize', 'RuedaApp.services', 'RuedaAp
 				}
 			})
 		;
-
 		$urlRouterProvider.otherwise('/tab/rueda');
 	})
+
 	.run(function ($ionicPlatform, Analytics) {
 		$ionicPlatform.ready(function() {
 			Analytics.init('UA-1666271-15');
